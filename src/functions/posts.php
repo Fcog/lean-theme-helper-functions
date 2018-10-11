@@ -1,11 +1,23 @@
 <?php
+/**
+ * Function helpers for using with posts.
+ *
+ * @package    Helper Functions
+ * @subpackage Posts
+ * @author     Francisco Giraldo <fgiraldo@wearenolte.com.com>
+ * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
+ * @link       https://wearenolte.com
+ * @since      1.0.0
+ */
 
 /**
  * Returns the years in the given order on which the posts have been written.
  *
  * @param string $post_type Name of the post type.
+ * @param string $order Desc or Asc.
+ * @return array
  */
-function lean_get_posts_years( $post_type = 'post', $order = 'desc' ) {
+function lean_get_posts_years( string $post_type = 'post', string $order = 'desc' ) {
 	$years_string = wp_get_archives([
 		'type' => 'yearly',
 		'format' => 'custom',
@@ -22,7 +34,7 @@ function lean_get_posts_years( $post_type = 'post', $order = 'desc' ) {
 		return [];
 	}
 
-	if ( $order === 'desc' ) {
+	if ( 'desc' === $order ) {
 		rsort( $years, SORT_NUMERIC );
 	} else {
 		sort( $years, SORT_NUMERIC );
